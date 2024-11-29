@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.routeplannerapp;
+package routeplannapp;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,7 +13,7 @@ package com.mycompany.routeplannerapp;
 public class RoutePlanGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form RoutePlan
+     * Creates new form RoutePlanGUI
      */
     public RoutePlanGUI() {
         initComponents();
@@ -26,12 +28,25 @@ public class RoutePlanGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         mainBtn = new javax.swing.JButton();
-        communtiyBtn = new javax.swing.JButton();
+        communityBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        returnSelectorLbl = new javax.swing.JLabel();
+        routeSelectorLbl = new javax.swing.JLabel();
+        bicycleBtn = new javax.swing.JRadioButton();
+        walkBtn = new javax.swing.JRadioButton();
+        publicTransBtn = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        answerTxtArea = new javax.swing.JTextArea();
+        genPath = new javax.swing.JButton();
+        routeCombo = new javax.swing.JComboBox<>();
+        r3turnCombo = new javax.swing.JComboBox<>();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,71 +61,196 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
         });
 
-        communtiyBtn.setBackground(new java.awt.Color(102, 102, 0));
-        communtiyBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        communtiyBtn.setText("Community");
-        communtiyBtn.addActionListener(new java.awt.event.ActionListener() {
+        communityBtn.setBackground(new java.awt.Color(102, 102, 0));
+        communityBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        communityBtn.setText("Community:");
+        communityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                communtiyBtnActionPerformed(evt);
+                communityBtnActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
-        jLabel1.setText("Route Planner:");
+        jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
+        jLabel1.setText("Route Planner");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/routeplannerapp/Adobe Express 2024-11-16 21.07.28.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/routeplannerapp/Adobe Express 2024-11-16 20.39.17.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/routeplannapp/MainHubImage.png"))); // NOI18N
         jLabel3.setText("jLabel3");
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/routeplannapp/CommunityImage.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+
+        returnSelectorLbl.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
+        returnSelectorLbl.setText("Return:");
+
+        routeSelectorLbl.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
+        routeSelectorLbl.setText("Route:");
+
+        bicycleBtn.setBackground(new java.awt.Color(153, 153, 0));
+        bicycleBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        bicycleBtn.setForeground(new java.awt.Color(0, 0, 0));
+        bicycleBtn.setText("Bicycle");
+        bicycleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bicycleBtnActionPerformed(evt);
+            }
+        });
+
+        walkBtn.setBackground(new java.awt.Color(153, 153, 0));
+        walkBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        walkBtn.setText("Walk");
+
+        publicTransBtn.setBackground(new java.awt.Color(153, 153, 0));
+        publicTransBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        publicTransBtn.setForeground(new java.awt.Color(0, 0, 0));
+        publicTransBtn.setText("Public Transport");
+
+        answerTxtArea.setBackground(new java.awt.Color(153, 153, 0));
+        answerTxtArea.setColumns(20);
+        answerTxtArea.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        answerTxtArea.setRows(5);
+        answerTxtArea.setBorder(new javax.swing.border.MatteBorder(null));
+        jScrollPane1.setViewportView(answerTxtArea);
+
+        genPath.setBackground(new java.awt.Color(102, 102, 0));
+        genPath.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        genPath.setText("Generate Path:");
+        genPath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genPathActionPerformed(evt);
+            }
+        });
+
+        routeCombo.setBackground(new java.awt.Color(153, 153, 0));
+        routeCombo.setEditable(true);
+        routeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O'Connell Street", "Pearse Station", "Earl Street", "Henry Street", "Grafton Street" }));
+        routeCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                routeComboItemStateChanged(evt);
+            }
+        });
+        routeCombo.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                routeComboAncestorMoved(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        routeCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routeComboActionPerformed(evt);
+            }
+        });
+
+        r3turnCombo.setEditable(true);
+        r3turnCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O'Connell Street\t", "Pearse Station", "Earl Street", "Henry Street", "Grafton Street" }));
+        r3turnCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                r3turnComboItemStateChanged(evt);
+            }
+        });
+        r3turnCombo.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+                r3turnComboAncestorMoved(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        r3turnCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                r3turnComboActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(84, 84, 84))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(mainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(communtiyBtn)
-                        .addGap(61, 61, 61))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(188, 188, 188))
+                        .addGap(38, 38, 38)
+                        .addComponent(communityBtn))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(119, 119, 119)
+                .addComponent(genPath)
+                .addGap(0, 201, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(mainBtn)
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(returnSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(r3turnCombo, 0, 136, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(routeSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(routeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bicycleBtn)
+                            .addComponent(walkBtn)
+                            .addComponent(publicTransBtn))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(69, 69, 69)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(45, 45, 45)
+                        .addComponent(publicTransBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bicycleBtn))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(routeSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(routeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mainBtn)
-                    .addComponent(communtiyBtn))
-                .addGap(38, 38, 38))
+                    .addComponent(returnSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(walkBtn)
+                    .addComponent(r3turnCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(communityBtn))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(genPath)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +260,14 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void communityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communityBtnActionPerformed
+        // TODO add your handling code here:
+        CommunityGUI c = new CommunityGUI();
+        c.setVisible(true);
+        this.dispose();       
+        
+    }//GEN-LAST:event_communityBtnActionPerformed
+
     private void mainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainBtnActionPerformed
         // TODO add your handling code here:
         MainGUI m = new MainGUI();
@@ -127,12 +275,142 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_mainBtnActionPerformed
 
-    private void communtiyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_communtiyBtnActionPerformed
+    private void bicycleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bicycleBtnActionPerformed
         // TODO add your handling code here:
-        CommunityGUI c = new CommunityGUI();
-        c.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_communtiyBtnActionPerformed
+    }//GEN-LAST:event_bicycleBtnActionPerformed
+
+    private void genPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genPathActionPerformed
+        // TODO add your handling code here:
+        
+        int co2;
+        if (publicTransBtn.isSelected()){
+            if(routeCombo.getSelectedItem()==("O'Connell Street")){
+                if(r3turnCombo.getSelectedItem()==("Grafton Street")){
+                answerTxtArea.setText("Your destination from O'Connel Street to Grafton Street is set.\n you will emit 335g of Co2");
+                co2=335;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                answerTxtArea.setText("Tour Destination from O'Connel Street to Pearse Station is Set.\nYou will emit 270g of Co2");
+                co2=270;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                answerTxtArea.setText("Your Destination from O'Connell Street to Henry Street is set.\n You will emit 45g of Co2");
+                co2=45;
+                }
+                else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                answerTxtArea.setText("Your Destination from O'Connell Street to Earl Street is set.\n You will emit 180g of co2.");
+                co2=180;
+            
+                    
+                }
+                
+                
+            }
+            else if(routeCombo.getSelectedItem()=="Pearse Station"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                answerTxtArea.setText("Your Destination from Pearse Station to O'Connell Street is set.\n you will emit 270g of Co2.");
+                co2=270;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                answerTxtArea.setText("Your Destination from Pearse Station to Grafton street is set.\n you will emit 175g of Co2.");
+                co2=175;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                answerTxtArea.setText("Your Destiantion from PEarse Station to Henry Street is set.\n You Will emit 290g of Co2");
+                co2=290;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                answerTxtArea.setText("Your Destination from Pearse Station to Earl Street is set.\n You Will emit 140g of Co2.");
+                co2=140;
+            }
+        }
+            else if(routeCombo.getSelectedItem()=="Grafton Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                answerTxtArea.setText("Your destination from Grafton Street to O'Connell Street is set.\n you will emit 335g of Co2");
+                co2=335;
+                }
+            else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                answerTxtArea.setText("YourDestination from Grafton Street to Pearse Station is set.\n You will emit 175g of Co2");
+                co2=175;     
+            }
+            else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                answerTxtArea.setText("Your Destination from Grafton Street to Henry Street is set.\n You will emit 280g of co2");
+                co2=200;
+            }
+            else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                answerTxtArea.setText("Your Destination from Grafton Street to Earl Street is set.\n you will emit 360g of co2");
+                co2=360;           
+            }
+            
+                     
+                
+            }
+            else if(routeCombo.getSelectedItem()=="Earl Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                answerTxtArea.setText("Your Destination fron Earl Street to O'Connell Street is set.\n You will emit 130g of Co2");
+                co2=130;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                answerTxtArea.setText("Your Destination from Earl Street to Pearse Station is set.\n You will emit 140g of Co2");
+                co2=140;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                answerTxtArea.setText("Your Destination from Earl Street to Grafton Street is set.\n you will emit 330g of Co2");
+                co2=330;
+            }   
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                answerTxtArea.setText("Your Destination from Earls Street to HEnry Street is set.\n You will emit 180g of Co2");
+                co2=180;
+            }
+            }
+            else if(routeCombo.getSelectedItem()=="Henry Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                answerTxtArea.setText("Your Destination from henry street to O'Connell Street is set.\n you will emit 290g of Co2");
+                co2=290;
+        }
+                if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                answerTxtArea.setText("Your Destination from Henry Street to Pearse Station is set.\n You will emit 290g of Co2");
+                co2=290;
+            }
+                if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                answerTxtArea.setText("Your destination from Henry Street to Grafton Street is set.\n You will emit 350g of Co2");
+                co2=350;
+            }
+                if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                answerTxtArea.setText("Your Destination from Henry Street to Earl Street is set.\n you will emit 180g of Co2");                
+                co2=180;
+            }
+        }
+            
+        }
+                
+    }//GEN-LAST:event_genPathActionPerformed
+
+    private void routeComboAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_routeComboAncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routeComboAncestorMoved
+
+    private void routeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routeComboActionPerformed
+
+    private void routeComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_routeComboItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routeComboItemStateChanged
+
+    private void r3turnComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_r3turnComboItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_r3turnComboItemStateChanged
+
+    private void r3turnComboAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_r3turnComboAncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_r3turnComboAncestorMoved
+
+    private void r3turnComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r3turnComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_r3turnComboActionPerformed
+
+
 
     /**
      * @param args the command line arguments
@@ -160,7 +438,6 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RoutePlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -171,11 +448,22 @@ public class RoutePlanGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton communtiyBtn;
+    private javax.swing.JTextArea answerTxtArea;
+    private javax.swing.JRadioButton bicycleBtn;
+    private javax.swing.JButton communityBtn;
+    private javax.swing.JButton genPath;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mainBtn;
+    private javax.swing.JRadioButton publicTransBtn;
+    private javax.swing.JComboBox<String> r3turnCombo;
+    private javax.swing.JLabel returnSelectorLbl;
+    private javax.swing.JComboBox<String> routeCombo;
+    private javax.swing.JLabel routeSelectorLbl;
+    private javax.swing.JRadioButton walkBtn;
     // End of variables declaration//GEN-END:variables
 }
