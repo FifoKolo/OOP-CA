@@ -97,6 +97,7 @@ public class RoutePlanGUI extends javax.swing.JFrame {
 
         walkBtn.setBackground(new java.awt.Color(153, 153, 0));
         walkBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        walkBtn.setForeground(new java.awt.Color(51, 51, 51));
         walkBtn.setText("Walk");
 
         publicTransBtn.setBackground(new java.awt.Color(153, 153, 0));
@@ -122,7 +123,7 @@ public class RoutePlanGUI extends javax.swing.JFrame {
 
         routeCombo.setBackground(new java.awt.Color(153, 153, 0));
         routeCombo.setEditable(true);
-        routeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O'Connell Street", "Pearse Station", "Earl Street", "Henry Street", "Grafton Street" }));
+        routeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O'Connell Street", "Pearse Station", "Earl Street", "Henry Street", "Grafton Street", " " }));
         routeCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 routeComboItemStateChanged(evt);
@@ -281,25 +282,35 @@ public class RoutePlanGUI extends javax.swing.JFrame {
 
     private void genPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genPathActionPerformed
         // TODO add your handling code here:
-        
+        int time;
         int co2;
+        Output mystructure;
         if (publicTransBtn.isSelected()){
             if(routeCombo.getSelectedItem()==("O'Connell Street")){
                 if(r3turnCombo.getSelectedItem()==("Grafton Street")){
-                answerTxtArea.setText("Your destination from O'Connel Street to Grafton Street is set.\n you will emit 335g of Co2");
+                     mystructure= new Output("O'Connell Street","Grafton Street","30");
+                answerTxtArea.setText(mystructure.output());
                 co2=335;
+                time=30;
+                
             }
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                answerTxtArea.setText("Tour Destination from O'Connel Street to Pearse Station is Set.\nYou will emit 270g of Co2");
+                     mystructure= new Output("O'Connell Street","Pearse Station","20");
+                answerTxtArea.setText(mystructure.output());
                 co2=270;
+                time=20;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                answerTxtArea.setText("Your Destination from O'Connell Street to Henry Street is set.\n You will emit 45g of Co2");
+                     mystructure= new Output("O'Connell Street","Henry Street","4");
+                answerTxtArea.setText(mystructure.output());
                 co2=45;
+                time=4;
                 }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                answerTxtArea.setText("Your Destination from O'Connell Street to Earl Street is set.\n You will emit 180g of co2.");
+                     mystructure= new Output("O'Connell Street","Earl Street","15");
+                answerTxtArea.setText(mystructure.output());
                 co2=180;
+                time=15;
             
                     
                 }
@@ -308,38 +319,54 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
             else if(routeCombo.getSelectedItem()=="Pearse Station"){
                 if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                answerTxtArea.setText("Your Destination from Pearse Station to O'Connell Street is set.\n you will emit 270g of Co2.");
+                     mystructure= new Output("Pearse Station","O Connell Street","15");
+                answerTxtArea.setText(mystructure.output());
                 co2=270;
+                time=15;
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                answerTxtArea.setText("Your Destination from Pearse Station to Grafton street is set.\n you will emit 175g of Co2.");
+                    mystructure= new Output("Pearse Station","Grafton Street","25");
+                answerTxtArea.setText(mystructure.output());
                 co2=175;
+                time=25;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                answerTxtArea.setText("Your Destiantion from PEarse Station to Henry Street is set.\n You Will emit 290g of Co2");
+                    mystructure= new Output("Pearse Station","Henry Street","15");
+                answerTxtArea.setText(mystructure.output());
                 co2=290;
+                time=15;
             }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                answerTxtArea.setText("Your Destination from Pearse Station to Earl Street is set.\n You Will emit 140g of Co2.");
+                    mystructure= new Output("Pearse Station","Earl Street","10");
+                answerTxtArea.setText(mystructure.output());
                 co2=140;
+                time=10;
             }
         }
             else if(routeCombo.getSelectedItem()=="Grafton Street"){
                 if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                answerTxtArea.setText("Your destination from Grafton Street to O'Connell Street is set.\n you will emit 335g of Co2");
+                    mystructure= new Output("Grafton Street","O Connell Street","20");
+                answerTxtArea.setText(mystructure.output());
                 co2=335;
+                time=20;
                 }
             else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                answerTxtArea.setText("YourDestination from Grafton Street to Pearse Station is set.\n You will emit 175g of Co2");
+                mystructure= new Output("Grafton Street","Pearse Station","15");
+                answerTxtArea.setText(mystructure.output());
                 co2=175;     
+                time=15;
             }
             else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                answerTxtArea.setText("Your Destination from Grafton Street to Henry Street is set.\n You will emit 280g of co2");
+                mystructure= new Output("Grafton Street","Henry Street","20");
+                answerTxtArea.setText(mystructure.output());
                 co2=200;
+                time=20;
             }
             else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                answerTxtArea.setText("Your Destination from Grafton Street to Earl Street is set.\n you will emit 360g of co2");
+                mystructure= new Output("Grafton Street","Earl Street","30");
+                answerTxtArea.setText(mystructure.output());
                 co2=360;           
+                time=30;
             }
             
                      
@@ -347,38 +374,335 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
             else if(routeCombo.getSelectedItem()=="Earl Street"){
                 if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                answerTxtArea.setText("Your Destination fron Earl Street to O'Connell Street is set.\n You will emit 130g of Co2");
+                    mystructure= new Output("Earl Street","O Connell Street","10");
+                answerTxtArea.setText(mystructure.output());
                 co2=130;
-            }
+                time=10;
+            }   
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                answerTxtArea.setText("Your Destination from Earl Street to Pearse Station is set.\n You will emit 140g of Co2");
+                    mystructure= new Output("Earl Street","Pearse Station","10");
+                answerTxtArea.setText(mystructure.output());
                 co2=140;
+                time=10;
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                answerTxtArea.setText("Your Destination from Earl Street to Grafton Street is set.\n you will emit 330g of Co2");
+                    mystructure= new Output("Earl Street","Grafton Street","25");
+                answerTxtArea.setText(mystructure.output());
                 co2=330;
+                time=25;
             }   
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                answerTxtArea.setText("Your Destination from Earls Street to HEnry Street is set.\n You will emit 180g of Co2");
+                    mystructure= new Output("Earl Street","Henry Street","15");
+                answerTxtArea.setText(mystructure.output());
                 co2=180;
+                time=15;
             }
             }
             else if(routeCombo.getSelectedItem()=="Henry Street"){
                 if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                answerTxtArea.setText("Your Destination from henry street to O'Connell Street is set.\n you will emit 290g of Co2");
+                    mystructure= new Output("Henry Street","O Connell Street","25");
+                answerTxtArea.setText(mystructure.output());
                 co2=290;
+                time=25;
         }
                 if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                answerTxtArea.setText("Your Destination from Henry Street to Pearse Station is set.\n You will emit 290g of Co2");
+                    mystructure= new Output("Henry Street","Pearse Station","15");
+                answerTxtArea.setText(mystructure.output());
                 co2=290;
+                time=15;
             }
                 if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                answerTxtArea.setText("Your destination from Henry Street to Grafton Street is set.\n You will emit 350g of Co2");
+                    mystructure= new Output("Henry Street","Grafton Street","30");
+                answerTxtArea.setText(mystructure.output());
                 co2=350;
+                time=30;
             }
                 if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                answerTxtArea.setText("Your Destination from Henry Street to Earl Street is set.\n you will emit 180g of Co2");                
+                    mystructure= new Output("Henry Street","Earl Street","15");
+                answerTxtArea.setText(mystructure.output());                
                 co2=180;
+                time=15;
+            }
+        }
+            
+        }
+        if (walkBtn.isSelected()){
+            if(routeCombo.getSelectedItem()==("O'Connell Street")){
+                if(r3turnCombo.getSelectedItem()==("Grafton Street")){
+                     mystructure= new Output("O'Connell Street","Grafton Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=15;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                     mystructure= new Output("O'Connell Street","Pearse Station","20");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=20;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                     mystructure= new Output("O'Connell Street","Henry Street","4");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=4;
+                }
+                else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                     mystructure= new Output("O'Connell Street","Earl Street","4");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=4;
+            
+                    
+                }
+                
+                
+            }
+            else if(routeCombo.getSelectedItem()=="Pearse Station"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                     mystructure= new Output("Pearse Station","O Connell Street","20");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=20;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                    mystructure= new Output("Pearse Station","Grafton Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=15;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                    mystructure= new Output("Pearse Station","Henry Street","20");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=20;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                    mystructure= new Output("Pearse Station","Earl Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=15;
+            }
+        }
+            else if(routeCombo.getSelectedItem()=="Grafton Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                    mystructure= new Output("Grafton Street","O Connell Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=15;
+                }
+            else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                mystructure= new Output("Grafton Street","Pearse Station","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;     
+                time=15;
+            }
+            else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                mystructure= new Output("Grafton Street","Henry Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=15;
+            }
+            else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                mystructure= new Output("Grafton Street","Earl Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;   
+                time=15;
+            }
+            
+                     
+                
+            }
+            else if(routeCombo.getSelectedItem()=="Earl Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                    mystructure= new Output("Earl Street","O Connell Street","5");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=5;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                    mystructure= new Output("Earl Street","Pearse Station","20");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=20;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                    mystructure= new Output("Earl Street","Grafton Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=15;
+            }   
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                    mystructure= new Output("Earl Street","Henry Street","13");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=13;
+            }
+            }
+            else if(routeCombo.getSelectedItem()=="Henry Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                    mystructure= new Output("Henry Street","O Connell Street","5");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=5;
+        }
+                if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                    mystructure= new Output("Henry Street","Pearse Station","20");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=20;
+            }
+                if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                    mystructure= new Output("Henry Street","Grafton Street","15");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=15;
+            }
+                if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                    mystructure= new Output("Henry Street","Earl Street","3");
+                answerTxtArea.setText(mystructure.output());                
+                co2=0;
+                time=3;
+            }
+        }
+            
+        }
+        if (bicycleBtn.isSelected()){
+            if(routeCombo.getSelectedItem()==("O'Connell Street")){
+                if(r3turnCombo.getSelectedItem()==("Grafton Street")){
+                     mystructure= new Output("O'Connell Street","Grafton Street","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                     mystructure= new Output("O'Connell Street","Pearse Station","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                     mystructure= new Output("O'Connell Street","Henry Street","2");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=2;
+                }
+                else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                     mystructure= new Output("O'Connell Street","Earl Street","3");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=3;
+            
+                    
+                }
+                
+                
+            }
+            else if(routeCombo.getSelectedItem()=="Pearse Station"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                     mystructure= new Output("Pearse Station","O Connell Street","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+                
+            }
+                else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                    mystructure= new Output("Pearse Station","Grafton Street","6");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=6;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                    mystructure= new Output("Pearse Station","Henry Street","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                    mystructure= new Output("Pearse Station","Earl Street","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }
+        }
+            else if(routeCombo.getSelectedItem()=="Grafton Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                    mystructure= new Output("Grafton Street","O Connell Street","5");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=5;
+                }
+            else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                mystructure= new Output("Grafton Street","Pearse Station","5");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;  
+                time=5;
+            }
+            else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                mystructure= new Output("Grafton Street","Henry Street","7");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=7;
+            }
+            else if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                mystructure= new Output("Grafton Street","Earl Street","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;    
+                time=10;
+            }
+            
+                     
+                
+            }
+            else if(routeCombo.getSelectedItem()=="Earl Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                    mystructure= new Output("Earl Street","O Connell Street","3");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=3;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                    mystructure= new Output("Earl Street","Pearse Station","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }
+                else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                    mystructure= new Output("Earl Street","Grafton Street","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }   
+                else if(r3turnCombo.getSelectedItem()=="Henry Street"){
+                    mystructure= new Output("Earl Street","Henry Street","5");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=5;
+            }
+            }
+            else if(routeCombo.getSelectedItem()=="Henry Street"){
+                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
+                    mystructure= new Output("Henry Street","O Connell Street","3");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=3;
+        }
+                if(r3turnCombo.getSelectedItem()=="Pearse Station"){
+                    mystructure= new Output("Henry Street","Pearse Station","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }
+                if(r3turnCombo.getSelectedItem()=="Grafton Street"){
+                    mystructure= new Output("Henry Street","Grafton Street","10");
+                answerTxtArea.setText(mystructure.output());
+                co2=0;
+                time=10;
+            }
+                if(r3turnCombo.getSelectedItem()=="Earl Street"){
+                    mystructure= new Output("Henry Street","Earl Street","5");
+                answerTxtArea.setText(mystructure.output());                
+                co2=0;
+                time=5;
             }
         }
             
