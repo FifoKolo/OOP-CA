@@ -4,6 +4,10 @@
  */
 package routeplannapp;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,11 +32,11 @@ public class RoutePlanGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        btnGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         mainBtn = new javax.swing.JButton();
         communityBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        titleLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         returnSelectorLbl = new javax.swing.JLabel();
@@ -45,15 +49,15 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         genPath = new javax.swing.JButton();
         routeCombo = new javax.swing.JComboBox<>();
         r3turnCombo = new javax.swing.JComboBox<>();
-
-        jLabel2.setText("jLabel2");
+        readBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        mainBtn.setBackground(new java.awt.Color(102, 102, 0));
+        mainBtn.setBackground(new java.awt.Color(255, 255, 255));
         mainBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mainBtn.setForeground(new java.awt.Color(0, 0, 0));
         mainBtn.setText("Main:");
         mainBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,8 +65,9 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
         });
 
-        communityBtn.setBackground(new java.awt.Color(102, 102, 0));
+        communityBtn.setBackground(new java.awt.Color(255, 255, 255));
         communityBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        communityBtn.setForeground(new java.awt.Color(0, 0, 0));
         communityBtn.setText("Community:");
         communityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,14 +75,16 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
-        jLabel1.setText("Route Planner");
+        titleLbl.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
+        titleLbl.setText("Route Planner");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/routeplannapp/MainHubImage.png"))); // NOI18N
         jLabel3.setText("jLabel3");
+        jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.white, null, null));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/routeplannapp/CommunityImage.png"))); // NOI18N
         jLabel4.setText("jLabel4");
+        jLabel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.white, null, null));
 
         returnSelectorLbl.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         returnSelectorLbl.setText("Return:");
@@ -85,7 +92,8 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         routeSelectorLbl.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
         routeSelectorLbl.setText("Route:");
 
-        bicycleBtn.setBackground(new java.awt.Color(153, 153, 0));
+        bicycleBtn.setBackground(new java.awt.Color(102, 102, 102));
+        btnGroup.add(bicycleBtn);
         bicycleBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         bicycleBtn.setForeground(new java.awt.Color(0, 0, 0));
         bicycleBtn.setText("Bicycle");
@@ -95,25 +103,34 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
         });
 
-        walkBtn.setBackground(new java.awt.Color(153, 153, 0));
+        walkBtn.setBackground(new java.awt.Color(102, 102, 102));
+        btnGroup.add(walkBtn);
         walkBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        walkBtn.setForeground(new java.awt.Color(51, 51, 51));
+        walkBtn.setForeground(new java.awt.Color(0, 0, 0));
         walkBtn.setText("Walk");
 
-        publicTransBtn.setBackground(new java.awt.Color(153, 153, 0));
+        publicTransBtn.setBackground(new java.awt.Color(102, 102, 102));
+        btnGroup.add(publicTransBtn);
         publicTransBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         publicTransBtn.setForeground(new java.awt.Color(0, 0, 0));
         publicTransBtn.setText("Public Transport");
+        publicTransBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                publicTransBtnActionPerformed(evt);
+            }
+        });
 
-        answerTxtArea.setBackground(new java.awt.Color(153, 153, 0));
+        answerTxtArea.setBackground(new java.awt.Color(255, 255, 255));
         answerTxtArea.setColumns(20);
         answerTxtArea.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        answerTxtArea.setForeground(new java.awt.Color(0, 0, 0));
         answerTxtArea.setRows(5);
         answerTxtArea.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane1.setViewportView(answerTxtArea);
 
-        genPath.setBackground(new java.awt.Color(102, 102, 0));
+        genPath.setBackground(new java.awt.Color(255, 255, 255));
         genPath.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        genPath.setForeground(new java.awt.Color(0, 0, 0));
         genPath.setText("Generate Path:");
         genPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +138,7 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
         });
 
-        routeCombo.setBackground(new java.awt.Color(153, 153, 0));
+        routeCombo.setBackground(new java.awt.Color(102, 102, 102));
         routeCombo.setEditable(true);
         routeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O'Connell Street", "Pearse Station", "Earl Street", "Henry Street", "Grafton Street", " " }));
         routeCombo.addItemListener(new java.awt.event.ItemListener() {
@@ -144,6 +161,7 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
         });
 
+        r3turnCombo.setBackground(new java.awt.Color(102, 102, 102));
         r3turnCombo.setEditable(true);
         r3turnCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "O'Connell Street\t", "Pearse Station", "Earl Street", "Henry Street", "Grafton Street" }));
         r3turnCombo.addItemListener(new java.awt.event.ItemListener() {
@@ -166,6 +184,16 @@ public class RoutePlanGUI extends javax.swing.JFrame {
             }
         });
 
+        readBtn.setBackground(new java.awt.Color(255, 255, 255));
+        readBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        readBtn.setForeground(new java.awt.Color(0, 0, 0));
+        readBtn.setText("Read");
+        readBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                readBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -174,7 +202,7 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(titleLbl)
                 .addGap(84, 84, 84))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,12 +214,13 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(119, 119, 119)
                 .addComponent(genPath)
-                .addGap(0, 201, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(mainBtn)
@@ -200,7 +229,7 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(returnSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(r3turnCombo, 0, 136, Short.MAX_VALUE))
+                                .addComponent(r3turnCombo, 0, 134, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(routeSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -209,8 +238,9 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bicycleBtn)
                             .addComponent(walkBtn)
-                            .addComponent(publicTransBtn))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addComponent(readBtn)
+                            .addComponent(publicTransBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,11 +249,14 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
+                        .addComponent(titleLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(publicTransBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bicycleBtn))
+                        .addComponent(bicycleBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(walkBtn)
+                        .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(routeSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(routeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -231,7 +264,6 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mainBtn)
                     .addComponent(returnSelectorLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(walkBtn)
                     .addComponent(r3turnCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -241,7 +273,9 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                         .addComponent(communityBtn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(genPath)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(genPath)
+                            .addComponent(readBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -265,8 +299,8 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         CommunityGUI c = new CommunityGUI();
         c.setVisible(true);
-        this.dispose();       
-        
+        this.dispose();
+
     }//GEN-LAST:event_communityBtnActionPerformed
 
     private void mainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainBtnActionPerformed
@@ -282,32 +316,32 @@ public class RoutePlanGUI extends javax.swing.JFrame {
 
     private void genPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genPathActionPerformed
         // TODO add your handling code here:
-        int time;
-        int co2;
+        int time;//time for user to get to his destination
+        int co2=0;//amount of co2 user emitted using the selected mode of transport in grams
         Output mystructure;
         if (publicTransBtn.isSelected()){
             if(routeCombo.getSelectedItem()==("O'Connell Street")){
                 if(r3turnCombo.getSelectedItem()==("Grafton Street")){
-                     mystructure= new Output("O'Connell Street","Grafton Street","30");
+                     mystructure= new Output("O'Connell Street","Grafton Street","30",335);
                 answerTxtArea.setText(mystructure.output());
                 co2=335;
                 time=30;
                 
             }
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                     mystructure= new Output("O'Connell Street","Pearse Station","20");
+                     mystructure= new Output("O'Connell Street","Pearse Station","20",270);
                 answerTxtArea.setText(mystructure.output());
                 co2=270;
                 time=20;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                     mystructure= new Output("O'Connell Street","Henry Street","4");
+                     mystructure= new Output("O'Connell Street","Henry Street","4",45);
                 answerTxtArea.setText(mystructure.output());
                 co2=45;
                 time=4;
                 }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                     mystructure= new Output("O'Connell Street","Earl Street","15");
+                     mystructure= new Output("O'Connell Street","Earl Street","15",180);
                 answerTxtArea.setText(mystructure.output());
                 co2=180;
                 time=15;
@@ -318,52 +352,52 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 
             }
             else if(routeCombo.getSelectedItem()=="Pearse Station"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                     mystructure= new Output("Pearse Station","O Connell Street","15");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                     mystructure= new Output("Pearse Station","O Connell Street","15",270);
                 answerTxtArea.setText(mystructure.output());
                 co2=270;
                 time=15;
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Pearse Station","Grafton Street","25");
+                    mystructure= new Output("Pearse Station","Grafton Street","25",175);
                 answerTxtArea.setText(mystructure.output());
                 co2=175;
                 time=25;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                    mystructure= new Output("Pearse Station","Henry Street","15");
+                    mystructure= new Output("Pearse Station","Henry Street","15",290);
                 answerTxtArea.setText(mystructure.output());
                 co2=290;
                 time=15;
             }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                    mystructure= new Output("Pearse Station","Earl Street","10");
+                    mystructure= new Output("Pearse Station","Earl Street","10",140);
                 answerTxtArea.setText(mystructure.output());
                 co2=140;
                 time=10;
             }
         }
             else if(routeCombo.getSelectedItem()=="Grafton Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Grafton Street","O Connell Street","20");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Grafton Street","O Connell Street","20",335);
                 answerTxtArea.setText(mystructure.output());
                 co2=335;
                 time=20;
                 }
             else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                mystructure= new Output("Grafton Street","Pearse Station","15");
+                mystructure= new Output("Grafton Street","Pearse Station","15",175);
                 answerTxtArea.setText(mystructure.output());
                 co2=175;     
                 time=15;
             }
             else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                mystructure= new Output("Grafton Street","Henry Street","20");
+                mystructure= new Output("Grafton Street","Henry Street","20",200);
                 answerTxtArea.setText(mystructure.output());
                 co2=200;
                 time=20;
             }
             else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                mystructure= new Output("Grafton Street","Earl Street","30");
+                mystructure= new Output("Grafton Street","Earl Street","30",360);
                 answerTxtArea.setText(mystructure.output());
                 co2=360;           
                 time=30;
@@ -373,52 +407,52 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 
             }
             else if(routeCombo.getSelectedItem()=="Earl Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Earl Street","O Connell Street","10");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Earl Street","O Connell Street","10",130);
                 answerTxtArea.setText(mystructure.output());
                 co2=130;
                 time=10;
             }   
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                    mystructure= new Output("Earl Street","Pearse Station","10");
+                    mystructure= new Output("Earl Street","Pearse Station","10",140);
                 answerTxtArea.setText(mystructure.output());
                 co2=140;
                 time=10;
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Earl Street","Grafton Street","25");
+                    mystructure= new Output("Earl Street","Grafton Street","25",330);
                 answerTxtArea.setText(mystructure.output());
                 co2=330;
                 time=25;
             }   
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                    mystructure= new Output("Earl Street","Henry Street","15");
+                    mystructure= new Output("Earl Street","Henry Street","15",180);
                 answerTxtArea.setText(mystructure.output());
                 co2=180;
                 time=15;
             }
             }
             else if(routeCombo.getSelectedItem()=="Henry Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Henry Street","O Connell Street","25");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Henry Street","O Connell Street","25",290);
                 answerTxtArea.setText(mystructure.output());
                 co2=290;
                 time=25;
         }
                 if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                    mystructure= new Output("Henry Street","Pearse Station","15");
+                    mystructure= new Output("Henry Street","Pearse Station","15",290);
                 answerTxtArea.setText(mystructure.output());
                 co2=290;
                 time=15;
             }
                 if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Henry Street","Grafton Street","30");
+                    mystructure= new Output("Henry Street","Grafton Street","30",350);
                 answerTxtArea.setText(mystructure.output());
                 co2=350;
                 time=30;
             }
                 if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                    mystructure= new Output("Henry Street","Earl Street","15");
+                    mystructure= new Output("Henry Street","Earl Street","15",180);
                 answerTxtArea.setText(mystructure.output());                
                 co2=180;
                 time=15;
@@ -429,25 +463,25 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         if (walkBtn.isSelected()){
             if(routeCombo.getSelectedItem()==("O'Connell Street")){
                 if(r3turnCombo.getSelectedItem()==("Grafton Street")){
-                     mystructure= new Output("O'Connell Street","Grafton Street","15");
+                     mystructure= new Output("O'Connell Street","Grafton Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=15;
             }
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                     mystructure= new Output("O'Connell Street","Pearse Station","20");
+                     mystructure= new Output("O'Connell Street","Pearse Station","20",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=20;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                     mystructure= new Output("O'Connell Street","Henry Street","4");
+                     mystructure= new Output("O'Connell Street","Henry Street","4",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=4;
                 }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                     mystructure= new Output("O'Connell Street","Earl Street","4");
+                     mystructure= new Output("O'Connell Street","Earl Street","4",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=4;
@@ -458,52 +492,52 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 
             }
             else if(routeCombo.getSelectedItem()=="Pearse Station"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                     mystructure= new Output("Pearse Station","O Connell Street","20");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                     mystructure= new Output("Pearse Station","O Connell Street","20",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=20;
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Pearse Station","Grafton Street","15");
+                    mystructure= new Output("Pearse Station","Grafton Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=15;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                    mystructure= new Output("Pearse Station","Henry Street","20");
+                    mystructure= new Output("Pearse Station","Henry Street","20",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=20;
             }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                    mystructure= new Output("Pearse Station","Earl Street","15");
+                    mystructure= new Output("Pearse Station","Earl Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=15;
             }
         }
             else if(routeCombo.getSelectedItem()=="Grafton Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Grafton Street","O Connell Street","15");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Grafton Street","O Connell Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=15;
                 }
             else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                mystructure= new Output("Grafton Street","Pearse Station","15");
+                mystructure= new Output("Grafton Street","Pearse Station","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;     
                 time=15;
             }
             else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                mystructure= new Output("Grafton Street","Henry Street","15");
+                mystructure= new Output("Grafton Street","Henry Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=15;
             }
             else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                mystructure= new Output("Grafton Street","Earl Street","15");
+                mystructure= new Output("Grafton Street","Earl Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;   
                 time=15;
@@ -513,52 +547,52 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 
             }
             else if(routeCombo.getSelectedItem()=="Earl Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Earl Street","O Connell Street","5");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Earl Street","O Connell Street","5",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=5;
             }
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                    mystructure= new Output("Earl Street","Pearse Station","20");
+                    mystructure= new Output("Earl Street","Pearse Station","20",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=20;
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Earl Street","Grafton Street","15");
+                    mystructure= new Output("Earl Street","Grafton Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=15;
             }   
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                    mystructure= new Output("Earl Street","Henry Street","13");
+                    mystructure= new Output("Earl Street","Henry Street","13",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=13;
             }
             }
             else if(routeCombo.getSelectedItem()=="Henry Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Henry Street","O Connell Street","5");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Henry Street","O Connell Street","5",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=5;
         }
                 if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                    mystructure= new Output("Henry Street","Pearse Station","20");
+                    mystructure= new Output("Henry Street","Pearse Station","20",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=20;
             }
                 if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Henry Street","Grafton Street","15");
+                    mystructure= new Output("Henry Street","Grafton Street","15",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=15;
             }
                 if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                    mystructure= new Output("Henry Street","Earl Street","3");
+                    mystructure= new Output("Henry Street","Earl Street","3",0);
                 answerTxtArea.setText(mystructure.output());                
                 co2=0;
                 time=3;
@@ -569,25 +603,25 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         if (bicycleBtn.isSelected()){
             if(routeCombo.getSelectedItem()==("O'Connell Street")){
                 if(r3turnCombo.getSelectedItem()==("Grafton Street")){
-                     mystructure= new Output("O'Connell Street","Grafton Street","10");
+                     mystructure= new Output("O'Connell Street","Grafton Street","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
             }
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                     mystructure= new Output("O'Connell Street","Pearse Station","10");
+                     mystructure= new Output("O'Connell Street","Pearse Station","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                     mystructure= new Output("O'Connell Street","Henry Street","2");
+                     mystructure= new Output("O'Connell Street","Henry Street","2",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=2;
                 }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                     mystructure= new Output("O'Connell Street","Earl Street","3");
+                     mystructure= new Output("O'Connell Street","Earl Street","3",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=3;
@@ -598,27 +632,27 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 
             }
             else if(routeCombo.getSelectedItem()=="Pearse Station"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                     mystructure= new Output("Pearse Station","O Connell Street","10");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                     mystructure= new Output("Pearse Station","O Connell Street","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
                 
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Pearse Station","Grafton Street","6");
+                    mystructure= new Output("Pearse Station","Grafton Street","6",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=6;
             }
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                    mystructure= new Output("Pearse Station","Henry Street","10");
+                    mystructure= new Output("Pearse Station","Henry Street","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
             }
                 else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                    mystructure= new Output("Pearse Station","Earl Street","10");
+                    mystructure= new Output("Pearse Station","Earl Street","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
@@ -626,25 +660,25 @@ public class RoutePlanGUI extends javax.swing.JFrame {
         }
             else if(routeCombo.getSelectedItem()=="Grafton Street"){
                 if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Grafton Street","O Connell Street","5");
+                    mystructure= new Output("Grafton Street","O Connell Street","5",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=5;
                 }
             else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                mystructure= new Output("Grafton Street","Pearse Station","5");
+                mystructure= new Output("Grafton Street","Pearse Station","5",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;  
                 time=5;
             }
             else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                mystructure= new Output("Grafton Street","Henry Street","7");
+                mystructure= new Output("Grafton Street","Henry Street","7",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=7;
             }
             else if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                mystructure= new Output("Grafton Street","Earl Street","10");
+                mystructure= new Output("Grafton Street","Earl Street","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;    
                 time=10;
@@ -654,59 +688,76 @@ public class RoutePlanGUI extends javax.swing.JFrame {
                 
             }
             else if(routeCombo.getSelectedItem()=="Earl Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Earl Street","O Connell Street","3");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Earl Street","O Connell Street","3",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=3;
             }
                 else if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                    mystructure= new Output("Earl Street","Pearse Station","10");
+                    mystructure= new Output("Earl Street","Pearse Station","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
             }
                 else if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Earl Street","Grafton Street","10");
+                    mystructure= new Output("Earl Street","Grafton Street","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
             }   
                 else if(r3turnCombo.getSelectedItem()=="Henry Street"){
-                    mystructure= new Output("Earl Street","Henry Street","5");
+                    mystructure= new Output("Earl Street","Henry Street","5",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=5;
             }
             }
             else if(routeCombo.getSelectedItem()=="Henry Street"){
-                if(r3turnCombo.getSelectedItem()=="O Connell Street"){
-                    mystructure= new Output("Henry Street","O Connell Street","3");
+                if(r3turnCombo.getSelectedItem()=="O'Connell Street"){
+                    mystructure= new Output("Henry Street","O Connell Street","3",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=3;
         }
                 if(r3turnCombo.getSelectedItem()=="Pearse Station"){
-                    mystructure= new Output("Henry Street","Pearse Station","10");
+                    mystructure= new Output("Henry Street","Pearse Station","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
             }
                 if(r3turnCombo.getSelectedItem()=="Grafton Street"){
-                    mystructure= new Output("Henry Street","Grafton Street","10");
+                    mystructure= new Output("Henry Street","Grafton Street","10",0);
                 answerTxtArea.setText(mystructure.output());
                 co2=0;
                 time=10;
             }
                 if(r3turnCombo.getSelectedItem()=="Earl Street"){
-                    mystructure= new Output("Henry Street","Earl Street","5");
+                    mystructure= new Output("Henry Street","Earl Street","5",0);
                 answerTxtArea.setText(mystructure.output());                
                 co2=0;
                 time=5;
+
+                  
             }
         }
             
         }
+        
+
+       File file = new File("co2history.txt");// creates file co2history
+        try 
+            (FileWriter fw = new FileWriter(file, true); 
+         BufferedWriter bw = new BufferedWriter(fw)) {
+        bw.write(String.valueOf(co2));//writes co2 integer into a string
+        bw.newLine();//creates a ne line to be easy readable
+    JOptionPane.showMessageDialog(null, "The CO2 emission has been saved.");
+} catch (IOException e) {
+    JOptionPane.showMessageDialog(null, "An error occurred while saving your data: " + e.getMessage());
+}
+        
+        
+        
                 
     }//GEN-LAST:event_genPathActionPerformed
 
@@ -716,6 +767,16 @@ public class RoutePlanGUI extends javax.swing.JFrame {
 
     private void routeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeComboActionPerformed
         // TODO add your handling code here:
+        String selectedStreet = (String) routeCombo.getSelectedItem();//gets all streets from combo box
+        String[] streets = {"O'Connell Street", "Grafton Street", "Pearse Station", "Henry Street", "Earl Street"};
+        r3turnCombo.removeAllItems(); // Clears all streets 
+                for (String street : streets) {
+                    if (!street.equals(selectedStreet)) {
+                        r3turnCombo.addItem(street); // Add streets except the selected one
+                    }
+                }
+        
+        
     }//GEN-LAST:event_routeComboActionPerformed
 
     private void routeComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_routeComboItemStateChanged
@@ -733,6 +794,16 @@ public class RoutePlanGUI extends javax.swing.JFrame {
     private void r3turnComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_r3turnComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_r3turnComboActionPerformed
+
+    private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Read Button not working.");
+
+    }//GEN-LAST:event_readBtnActionPerformed
+
+    private void publicTransBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicTransBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_publicTransBtnActionPerformed
 
 
 
@@ -774,10 +845,9 @@ public class RoutePlanGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea answerTxtArea;
     private javax.swing.JRadioButton bicycleBtn;
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton communityBtn;
     private javax.swing.JButton genPath;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -785,9 +855,11 @@ public class RoutePlanGUI extends javax.swing.JFrame {
     private javax.swing.JButton mainBtn;
     private javax.swing.JRadioButton publicTransBtn;
     private javax.swing.JComboBox<String> r3turnCombo;
+    private javax.swing.JButton readBtn;
     private javax.swing.JLabel returnSelectorLbl;
     private javax.swing.JComboBox<String> routeCombo;
     private javax.swing.JLabel routeSelectorLbl;
+    private javax.swing.JLabel titleLbl;
     private javax.swing.JRadioButton walkBtn;
     // End of variables declaration//GEN-END:variables
 }
